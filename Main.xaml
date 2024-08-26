@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1408.8,5709.6" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1408.8,5535.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -144,7 +144,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Hotel booking App&#xA;Fetching mail based on given subject. Reading all attchaments from the mail id and extract data from attachment.&#xA;Checking Business logic and categorize them into folder based on their status and send the mail to guest." DisplayName="Main-Hotel Booking" sap:VirtualizedContainerService.HintSize="909.6,5644.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Hotel booking App&#xA;Fetching mail based on given subject. Reading all attchaments from the mail id and extract data from attachment.&#xA;Checking Business logic and categorize them into folder based on their status and send the mail to guest." DisplayName="Main-Hotel Booking" sap:VirtualizedContainerService.HintSize="909.6,5470.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictInitialData" />
       <Variable x:TypeArguments="njl:JObject" Name="strjsonobj" />
@@ -403,7 +403,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:BuildDataTable>
     </Sequence>
-    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="847.2,4229.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="847.2,4055.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="lstmail" />
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictMatches" />
@@ -416,13 +416,13 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[dictInitialData(&quot;userOutlookMailID&quot;)]" DisplayName="Get Outlook Mail Messages-For Hotel Booking" Filter="[dictInitialData(&quot;mailFilter&quot;)]" GetAttachements="False" sap:VirtualizedContainerService.HintSize="784.8,56.8" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[dictInitialData(&quot;mailFolderInbox&quot;)]" MarkAsRead="False" Messages="[lstmail]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[Convert.ToInt32(dictInitialData(&quot;mailCount&quot;))]" />
-      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each currentMailMessage-list of mail message" sap:VirtualizedContainerService.HintSize="784.8,4052" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstmail]">
+      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each currentMailMessage-list of mail message" sap:VirtualizedContainerService.HintSize="784.8,3877.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstmail]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="snm:MailMessage">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="currentMailMessage" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body-Current mail message" sap:VirtualizedContainerService.HintSize="751.2,3914.4" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Body-Current mail message" sap:VirtualizedContainerService.HintSize="751.2,3740" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Boolean" Name="boolisMailFailed" />
                 <Variable x:TypeArguments="x:String" Name="mailStatus" />
@@ -446,7 +446,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Assign>
-              <If Condition="[currentMailMessage.Attachments.Any]" DisplayName="If-Mail contains attachment" sap:VirtualizedContainerService.HintSize="688.8,1428.8" sap2010:WorkflowViewState.IdRef="If_2">
+              <If Condition="[currentMailMessage.Attachments.Any]" DisplayName="If-Mail contains attachment" sap:VirtualizedContainerService.HintSize="688.8,1254.4" sap2010:WorkflowViewState.IdRef="If_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -454,7 +454,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
-                  <Sequence sap2010:Annotation.AnnotationText="Save attachemnts and checking file type and performing data extraction according to file" DisplayName="Then- Save Attachment" sap:VirtualizedContainerService.HintSize="655.2,940.8" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <Sequence sap2010:Annotation.AnnotationText="Save attachemnts and checking file type and performing data extraction according to file" DisplayName="Then- Save Attachment" sap:VirtualizedContainerService.HintSize="655.2,766.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ienumAttach" />
                     </Sequence.Variables>
@@ -473,13 +473,13 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:SaveMailAttachments>
-                    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each -Attachment in current mail" sap:VirtualizedContainerService.HintSize="592.8,700.8" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[ienumAttach]">
+                    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each -Attachment in current mail" sap:VirtualizedContainerService.HintSize="592.8,526.4" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[ienumAttach]">
                       <ui:ForEach.Body>
                         <ActivityAction x:TypeArguments="x:String">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Body-Attachment (For each attachments)" sap:VirtualizedContainerService.HintSize="559.2,563.2" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence DisplayName="Body-Attachment (For each attachments)" sap:VirtualizedContainerService.HintSize="559.2,388.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:String" Name="strOuputData" />
                               <Variable x:TypeArguments="sd:DataTable" Name="dt" />
@@ -553,8 +553,7 @@
                                 </ui:MergeDataTable>
                               </Sequence>
                             </Switch>
-                            <ui:DeleteFileX DisplayName="Delete File-Current attachment" sap:VirtualizedContainerService.HintSize="496.8,112.8" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[currentText]" />
-                            <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="496.8,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_12" Level="Info" Message="[&quot;Attachment deleted&quot;]" />
+                            <ui:DeleteFileX DisplayName="Delete File-Current attachment" sap:VirtualizedContainerService.HintSize="496.8,104" sap2010:WorkflowViewState.IdRef="DeleteFileX_2" Path="[currentText]" />
                           </Sequence>
                         </ActivityAction>
                       </ui:ForEach.Body>
