@@ -5,7 +5,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1112.8,924.8</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1112.8,1856.8</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_20__c__Ui_form_Update_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -120,13 +120,13 @@
       <AssemblyReference>System.Runtime.Numerics</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="_20__c__Ui_form_Update" sap:VirtualizedContainerService.HintSize="558.4,860" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="_20__c__Ui_form_Update" sap:VirtualizedContainerService.HintSize="707.2,1792" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="Get data from main datatable and Filling given form using given url" DisplayName="UI-Insert Data in Form" sap:VirtualizedContainerService.HintSize="496,771.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence sap2010:Annotation.AnnotationText="Get data from main datatable and Filling given form using given url" DisplayName="UI-Insert Data in Form" sap:VirtualizedContainerService.HintSize="644.8,1703.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="s:String[]" Name="arrstrInputValues" />
         <Variable x:TypeArguments="s:String[]" Name="arrstrHeaderValues" />
@@ -138,7 +138,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Assign-Created an array for url form column name values" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign DisplayName="Assign-Created an array for url form column name values" sap:VirtualizedContainerService.HintSize="582.4,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="s:String[]">[arrstrInputValues]</OutArgument>
         </Assign.To>
@@ -152,7 +152,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <Assign DisplayName="Assign-Created an array for url form column name values" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign DisplayName="Assign-Created an array for url form column name values" sap:VirtualizedContainerService.HintSize="582.4,113.6" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="s:String[]">[arrstrHeaderValues]</OutArgument>
         </Assign.To>
@@ -166,9 +166,9 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="433.6,400.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="582.4,1332.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <TryCatch.Try>
-          <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Edge: Open Given url form" sap:VirtualizedContainerService.HintSize="545.6,1038.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" ScopeGuid="510c55b8-604f-4a10-9da7-24cee276467c" Version="V2" WindowResize="Maximize">
+          <uix:NApplicationCard AttachMode="ByInstance" CloseMode="IfOpenedByAppBrowser" DisplayName="Use Browser Edge: Open Given url form" sap:VirtualizedContainerService.HintSize="545.6,1078.4" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="510c55b8-604f-4a10-9da7-24cee276467c" Version="V2" WindowResize="Maximize">
             <uix:NApplicationCard.Body>
               <ActivityAction x:TypeArguments="x:Object">
                 <ActivityAction.Argument>
@@ -262,10 +262,10 @@
           </uix:NApplicationCard>
         </TryCatch.Try>
         <TryCatch.Catches>
-          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="400,213.6" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="548.8,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>

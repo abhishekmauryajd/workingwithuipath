@@ -154,7 +154,7 @@
               <OutArgument x:TypeArguments="s:DateTime">[dtimeCheckinDate]</OutArgument>
             </Assign.To>
             <Assign.Value>
-              <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(iocurrentRow("Check-in Date").ToString, "dd-MM-yyyy", System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)]</InArgument>
+              <InArgument x:TypeArguments="s:DateTime">[DateTime.ParseExact(iocurrentRow("Check-in Date").ToString, {"dd-MM-yyyy","MM/dd/yyyy","dd/MM/yyyy","MM-dd-yyyy"}, System.Globalization.CultureInfo.InvariantCulture, System.Globalization.DateTimeStyles.None)]</InArgument>
             </Assign.Value>
           </Assign>
           <If Condition="[dtimeCheckinDate&gt;DateTime.Now]" DisplayName="If-Checking arrival date and assign status" sap:VirtualizedContainerService.HintSize="529.6,1197.6" sap2010:WorkflowViewState.IdRef="If_1">

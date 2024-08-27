@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1408.8,5535.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1112.8,6619.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -144,13 +144,14 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Hotel booking App&#xA;Fetching mail based on given subject. Reading all attchaments from the mail id and extract data from attachment.&#xA;Checking Business logic and categorize them into folder based on their status and send the mail to guest." DisplayName="Main-Hotel Booking" sap:VirtualizedContainerService.HintSize="909.6,5470.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Hotel booking App&#xA;Fetching mail based on given subject. Reading all attchaments from the mail id and extract data from attachment.&#xA;Checking Business logic and categorize them into folder based on their status and send the mail to guest." DisplayName="Main-Hotel Booking" sap:VirtualizedContainerService.HintSize="909.6,6554.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictInitialData" />
       <Variable x:TypeArguments="njl:JObject" Name="strjsonobj" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtLogFile" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtBookingDetails" />
       <Variable x:TypeArguments="sd:DataTable" Name="dtcurrentData" />
+      <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="lstmail" />
     </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -158,7 +159,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap2010:Annotation.AnnotationText="Initializing all workbook and datatable and getting all assets in this sequence" DisplayName="Intialization" sap:VirtualizedContainerService.HintSize="847.2,765.6" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence sap2010:Annotation.AnnotationText="Initializing all workbook and datatable and getting all assets in this sequence" DisplayName="Intialization" sap:VirtualizedContainerService.HintSize="847.2,1056.8" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="sd:DataTable" Name="dtAttachmentData" />
         <Variable x:TypeArguments="sd:DataTable" Name="dtHotel" />
@@ -171,7 +172,7 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Assign-initializing dictionary for store assets" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign DisplayName="Assign-initializing dictionary for store assets" sap:VirtualizedContainerService.HintSize="452.8,113.6" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)">[dictInitialData]</OutArgument>
         </Assign.To>
@@ -185,10 +186,10 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </Assign>
-      <TryCatch sap2010:Annotation.AnnotationText="Fetching Assets for cloud ui  path in case of any fail event throw error and it stop the excecution" DisplayName="Try Catch-For fetching asset exception" sap:VirtualizedContainerService.HintSize="433.6,132.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch sap2010:Annotation.AnnotationText="Fetching Assets for cloud ui  path in case of any fail event throw error and it stop the excecution" DisplayName="Try Catch-For fetching asset exception" sap:VirtualizedContainerService.HintSize="452.8,367.2" sap2010:WorkflowViewState.IdRef="TryCatch_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
             <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
           </scg:Dictionary>
@@ -247,7 +248,7 @@
                 <OutArgument x:TypeArguments="x:String">[dictInitialData("sheet")]</OutArgument>
               </ui:GetRobotAsset.Value>
             </ui:GetRobotAsset>
-            <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MAS01 - Log File" CacheStrategy="None" DisplayName="MAS01 - Get Asset-read or craete log file local" FolderPath="abhishekmauryajd@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="353.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_9">
+            <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MAS01 - Log File" CacheStrategy="None" DisplayName="MAS01 - Get Asset-read or craete log file local" FolderPath="abhishekmauryajd@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="361.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_9">
               <ui:GetRobotAsset.Value>
                 <OutArgument x:TypeArguments="x:String">[dictInitialData("strPathLog")]</OutArgument>
               </ui:GetRobotAsset.Value>
@@ -282,12 +283,12 @@
                 <OutArgument x:TypeArguments="x:String">[dictInitialData("bookingConfirmation")]</OutArgument>
               </ui:GetRobotAsset.Value>
             </ui:GetRobotAsset>
-            <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MAS01 - File Extention Filter" CacheStrategy="None" DisplayName="MAS01 - Get Asset-Filter attachements  by pdf or csv" FolderPath="abhishekmauryajd@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="353.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_15">
+            <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MAS01 - File Extention Filter" CacheStrategy="None" DisplayName="MAS01 - Get Asset-Filter attachements  by pdf or csv" FolderPath="abhishekmauryajd@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="361.6,175.2" sap2010:WorkflowViewState.IdRef="GetRobotAsset_15">
               <ui:GetRobotAsset.Value>
                 <OutArgument x:TypeArguments="x:String">[dictInitialData("fileExtentionFilter")]</OutArgument>
               </ui:GetRobotAsset.Value>
             </ui:GetRobotAsset>
-            <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MAS01 - Attachments For Recipient" CacheStrategy="None" DisplayName="MAS01 - Get Asset-path of main booking file" FolderPath="abhishekmauryajd@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="353.6,166.4" sap2010:WorkflowViewState.IdRef="GetRobotAsset_17">
+            <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="MAS01 - Attachments For Recipient" CacheStrategy="None" DisplayName="MAS01 - Get Asset-path of main booking file" FolderPath="abhishekmauryajd@gmail.com's workspace" sap:VirtualizedContainerService.HintSize="361.6,166.4" sap2010:WorkflowViewState.IdRef="GetRobotAsset_17">
               <ui:GetRobotAsset.Value>
                 <OutArgument x:TypeArguments="x:String">[dictInitialData("attchemetsforUser")]</OutArgument>
               </ui:GetRobotAsset.Value>
@@ -327,7 +328,7 @@
           </Catch>
         </TryCatch.Catches>
       </TryCatch>
-      <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process-Close Excel file" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="excel.exe">
+      <ui:KillProcess AppliesTo="{x:Null}" ContinueOnError="{x:Null}" Process="{x:Null}" DisplayName="Kill Process-Close Excel file" sap:VirtualizedContainerService.HintSize="452.8,56.8" sap2010:WorkflowViewState.IdRef="KillProcess_1" ProcessName="excel.exe">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -335,7 +336,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:KillProcess>
-      <ui:ReadTextFile File="{x:Null}" Content="[strJsonText]" DisplayName="Read Text-Json File of text" FileName="[dictInitialData(&quot;jsonFile&quot;)]" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
+      <ui:ReadTextFile File="{x:Null}" Content="[strJsonText]" DisplayName="Read Text-Json File of text" FileName="[dictInitialData(&quot;jsonFile&quot;)]" sap:VirtualizedContainerService.HintSize="452.8,56.8" sap2010:WorkflowViewState.IdRef="ReadTextFile_1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -343,7 +344,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ReadTextFile>
-      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Deserialize JSON of Pattern file" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[strjsonobj]" JsonString="[strJsonText]">
+      <ui:DeserializeJson x:TypeArguments="njl:JObject" JsonSample="{x:Null}" DisplayName="Deserialize JSON of Pattern file" sap:VirtualizedContainerService.HintSize="452.8,56.8" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_1" JsonObject="[strjsonobj]" JsonString="[strJsonText]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -351,7 +352,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:DeserializeJson>
-      <ui:BuildDataTable DataTable="[dtBookingDetails]" DisplayName="Build Data Table-Booking Main Datatable" sap:VirtualizedContainerService.HintSize="433.6,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_11" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Guest_x0020_Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Hotel_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Guest_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Unique_x0020_Ref_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Arrival_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Check_x0020_out_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Booking_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Execution_x0020_Time&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+      <ui:BuildDataTable DataTable="[dtBookingDetails]" DisplayName="Build Data Table-Booking Main Datatable" sap:VirtualizedContainerService.HintSize="452.8,92" sap2010:WorkflowViewState.IdRef="BuildDataTable_11" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Guest_x0020_Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Hotel_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Guest_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Unique_x0020_Ref_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Arrival_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Check_x0020_out_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Booking_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Execution_x0020_Time&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -359,7 +360,80 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:BuildDataTable>
-      <If Condition="[File.Exists(dictInitialData(&quot;recipientAttachmentFile&quot;))]" DisplayName="If- check file exists or not" sap:VirtualizedContainerService.HintSize="433.6,56.8" sap2010:WorkflowViewState.IdRef="If_7">
+      <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="452.8,56.8" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+        <ui:CommentOut.Body>
+          <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,136.8" sap2010:WorkflowViewState.IdRef="Sequence_67">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <If Condition="[File.Exists(dictInitialData(&quot;recipientAttachmentFile&quot;))]" DisplayName="If- check file exists or not" sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="If_7">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <If.Then>
+                <Sequence DisplayName="Then-if exists" sap:VirtualizedContainerService.HintSize="416,254.4" sap2010:WorkflowViewState.IdRef="Sequence_62">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:LogMessage DisplayName="Log Message-Console" sap:VirtualizedContainerService.HintSize="353.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[&quot;File already exist&quot;]" />
+                </Sequence>
+              </If.Then>
+              <If.Else>
+                <Sequence DisplayName="Else-not exists" sap:VirtualizedContainerService.HintSize="416,136.8" sap2010:WorkflowViewState.IdRef="Sequence_63">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtBookingDetails]" DisplayName="Write Range Workbook-Booking Main File" sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="[dictInitialData(&quot;sheet&quot;)]" WorkbookPath="[dictInitialData(&quot;recipientAttachmentFile&quot;)]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </ui:WriteRange>
+                </Sequence>
+              </If.Else>
+            </If>
+          </Sequence>
+        </ui:CommentOut.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:CommentOut>
+      <ui:BuildDataTable DataTable="[dtcurrentData]" DisplayName="Build Data Table-For current mail datatable" sap:VirtualizedContainerService.HintSize="452.8,56.8" sap2010:WorkflowViewState.IdRef="BuildDataTable_10" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Hotel_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Guest_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Unique_x0020_Ref_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Check-in_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Check_x0020_out_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;No_x0020_Of_x0020_adults&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Booking_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:BuildDataTable>
+      <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[dictInitialData(&quot;userOutlookMailID&quot;)]" DisplayName="Get Outlook Mail Messages-For Hotel Booking" Filter="[dictInitialData(&quot;mailFilter&quot;)]" GetAttachements="False" sap:VirtualizedContainerService.HintSize="452.8,48" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_2" MailFolder="[dictInitialData(&quot;mailFolderInbox&quot;)]" MarkAsRead="False" Messages="[lstmail]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[Convert.ToInt32(dictInitialData(&quot;mailCount&quot;))]" />
+    </Sequence>
+    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="847.2,4848" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictMatches" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dtDataUi" />
+        <Variable x:TypeArguments="s:String[]" Name="arrstrInputValues" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If Condition="[File.Exists(dictInitialData(&quot;recipientAttachmentFile&quot;))]" DisplayName="If- check file exists or not" sap:VirtualizedContainerService.HintSize="784.8,56.8" sap2010:WorkflowViewState.IdRef="If_8">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -367,23 +441,23 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Then-if exists" sap:VirtualizedContainerService.HintSize="416,254.4" sap2010:WorkflowViewState.IdRef="Sequence_62">
+          <Sequence DisplayName="Then-if exists" sap:VirtualizedContainerService.HintSize="416,254.4" sap2010:WorkflowViewState.IdRef="Sequence_68">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:LogMessage DisplayName="Log Message-Console" sap:VirtualizedContainerService.HintSize="353.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Trace" Message="[&quot;File already exist&quot;]" />
+            <ui:LogMessage DisplayName="Log Message-Console" sap:VirtualizedContainerService.HintSize="353.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_13" Level="Trace" Message="[&quot;File already exist&quot;]" />
           </Sequence>
         </If.Then>
         <If.Else>
-          <Sequence DisplayName="Else-not exists" sap:VirtualizedContainerService.HintSize="416,136.8" sap2010:WorkflowViewState.IdRef="Sequence_63">
+          <Sequence DisplayName="Else-not exists" sap:VirtualizedContainerService.HintSize="416,136.8" sap2010:WorkflowViewState.IdRef="Sequence_69">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtBookingDetails]" DisplayName="Write Range Workbook-Booking Main File" sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="WriteRange_3" SheetName="[dictInitialData(&quot;sheet&quot;)]" WorkbookPath="[dictInitialData(&quot;recipientAttachmentFile&quot;)]">
+            <ui:WriteRange StartingCell="{x:Null}" AddHeaders="True" DataTable="[dtBookingDetails]" DisplayName="Write Range Workbook-Booking Main File" sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="WriteRange_4" SheetName="[dictInitialData(&quot;sheet&quot;)]" WorkbookPath="[dictInitialData(&quot;recipientAttachmentFile&quot;)]">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -394,35 +468,13 @@
           </Sequence>
         </If.Else>
       </If>
-      <ui:BuildDataTable DataTable="[dtcurrentData]" DisplayName="Build Data Table-For current mail datatable" sap:VirtualizedContainerService.HintSize="433.6,48" sap2010:WorkflowViewState.IdRef="BuildDataTable_10" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Email&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Hotel_x0020_Name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Guest_x0020_name&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Unique_x0020_Ref_x0020_Number&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Check-in_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Check_x0020_out_x0020_Date&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;No_x0020_Of_x0020_adults&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Room_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Booking_x0020_Type&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:BuildDataTable>
-    </Sequence>
-    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="847.2,4055.2" sap2010:WorkflowViewState.IdRef="Sequence_3">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="lstmail" />
-        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictMatches" />
-        <Variable x:TypeArguments="sd:DataTable" Name="dtDataUi" />
-        <Variable x:TypeArguments="s:String[]" Name="arrstrInputValues" />
-      </Sequence.Variables>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[dictInitialData(&quot;userOutlookMailID&quot;)]" DisplayName="Get Outlook Mail Messages-For Hotel Booking" Filter="[dictInitialData(&quot;mailFilter&quot;)]" GetAttachements="False" sap:VirtualizedContainerService.HintSize="784.8,56.8" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[dictInitialData(&quot;mailFolderInbox&quot;)]" MarkAsRead="False" Messages="[lstmail]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[Convert.ToInt32(dictInitialData(&quot;mailCount&quot;))]" />
-      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each currentMailMessage-list of mail message" sap:VirtualizedContainerService.HintSize="784.8,3877.6" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstmail]">
+      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each currentMailMessage-list of mail message" sap:VirtualizedContainerService.HintSize="784.8,4670.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstmail]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="snm:MailMessage">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="currentMailMessage" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body-Current mail message" sap:VirtualizedContainerService.HintSize="751.2,3740" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Body-Current mail message" sap:VirtualizedContainerService.HintSize="751.2,4532.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Boolean" Name="boolisMailFailed" />
                 <Variable x:TypeArguments="x:String" Name="mailStatus" />
@@ -446,7 +498,46 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </Assign>
-              <If Condition="[currentMailMessage.Attachments.Any]" DisplayName="If-Mail contains attachment" sap:VirtualizedContainerService.HintSize="688.8,1254.4" sap2010:WorkflowViewState.IdRef="If_2">
+              <If Condition="[currentMailMessage.Body.Contains(&quot;Unique Ref NUMBER&quot;)]" DisplayName="If-Checking mail body" sap:VirtualizedContainerService.HintSize="688.8,824.8" sap2010:WorkflowViewState.IdRef="If_9">
+                <If.Then>
+                  <Sequence DisplayName="Then-if mail body contains Unique ref number" sap:VirtualizedContainerService.HintSize="496,400" sap2010:WorkflowViewState.IdRef="Sequence_70">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="strmailBody" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <Assign DisplayName="Assign-Body to str variable" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[strmailBody]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[currentMailMessage.Body]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="10. a. ExtractDataInvoke - Invoke Workflow File (10. Invoke Code\10. a. ExtractDataInvoke.xaml)" sap:VirtualizedContainerService.HintSize="433.6,197.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_14" UnSafe="False" WorkflowFileName="10. Invoke Code\10. a. ExtractDataInvoke.xaml">
+                      <ui:InvokeWorkflowFile.Arguments>
+                        <InArgument x:TypeArguments="x:String" x:Key="istrtext">[strmailBody]</InArgument>
+                        <InArgument x:TypeArguments="njl:JObject" x:Key="ijobjFile">[strjsonobj]</InArgument>
+                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="iodtCurrentData">[dtcurrentData]</InOutArgument>
+                      </ui:InvokeWorkflowFile.Arguments>
+                    </ui:InvokeWorkflowFile>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <Sequence DisplayName="Else-if mail body doesn't contain booking details." sap:VirtualizedContainerService.HintSize="416,254.4" sap2010:WorkflowViewState.IdRef="Sequence_71">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:LogMessage DisplayName="Log Message-console" sap:VirtualizedContainerService.HintSize="353.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_14" Level="Trace" Message="[&quot;Mail body doesn't contain booking details..&quot;]" />
+                  </Sequence>
+                </If.Else>
+              </If>
+              <If Condition="[currentMailMessage.Attachments.Any]" DisplayName="If-Mail contains attachment" sap:VirtualizedContainerService.HintSize="688.8,1222.4" sap2010:WorkflowViewState.IdRef="If_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -567,7 +658,7 @@
                   </Sequence>
                 </If.Then>
                 <If.Else>
-                  <Sequence sap2010:Annotation.AnnotationText="Extract Data from body" DisplayName="Else-Mail doesn't contain any attachment" sap:VirtualizedContainerService.HintSize="416,317.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                  <Sequence sap2010:Annotation.AnnotationText="" DisplayName="Else-Mail doesn't contain any attachment" sap:VirtualizedContainerService.HintSize="416,285.6" sap2010:WorkflowViewState.IdRef="Sequence_10">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="s:DateTime" Name="dtimeCheckinDate" />
                     </Sequence.Variables>
@@ -578,19 +669,7 @@
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
-                    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="10. a. ExtractDataInvoke - Invoke Workflow File (10. Extract Data Invoke Code\10. a. ExtractDataInvoke.xaml)" sap:VirtualizedContainerService.HintSize="353.6,197.6" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="10. Invoke Code\10. a. ExtractDataInvoke.xaml">
-                      <ui:InvokeWorkflowFile.Arguments>
-                        <InArgument x:TypeArguments="x:String" x:Key="istrtext">[currentMailMessage.Body]</InArgument>
-                        <InArgument x:TypeArguments="njl:JObject" x:Key="ijobjFile">[strjsonobj]</InArgument>
-                        <InOutArgument x:TypeArguments="sd:DataTable" x:Key="iodtCurrentData">[dtcurrentData]</InOutArgument>
-                      </ui:InvokeWorkflowFile.Arguments>
-                      <sap:WorkflowViewStateService.ViewState>
-                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                        </scg:Dictionary>
-                      </sap:WorkflowViewStateService.ViewState>
-                    </ui:InvokeWorkflowFile>
+                    <ui:LogMessage DisplayName="Log Message-console" sap:VirtualizedContainerService.HintSize="353.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_15" Level="Trace" Message="[&quot;No attachments found&quot;]" />
                   </Sequence>
                 </If.Else>
               </If>
@@ -600,20 +679,20 @@
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="sd:DataRow" Name="CurrentRow" />
                     </ActivityAction.Argument>
-                    <Sequence DisplayName="Body-Invoke Extracted Data WF" sap:VirtualizedContainerService.HintSize="422.4,919.2" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                    <Sequence DisplayName="Body-Invoke Extracted Data WF" sap:VirtualizedContainerService.HintSize="416,919.2" sap2010:WorkflowViewState.IdRef="Sequence_41">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="10. a. ArrivalDateValidation - Invoke Workflow File (20. Validation\10. a. ArrivalDateValidation.xaml)" sap:VirtualizedContainerService.HintSize="360,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="20. Validation\20. a. ArrivalDateValidation.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="10. a. ArrivalDateValidation - Invoke Workflow File (20. Validation\10. a. ArrivalDateValidation.xaml)" sap:VirtualizedContainerService.HintSize="353.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_9" UnSafe="False" WorkflowFileName="20. Validation\20. a. ArrivalDateValidation.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InOutArgument x:TypeArguments="x:Boolean" x:Key="ioisMailFailed">[boolisMailFailed]</InOutArgument>
                           <InOutArgument x:TypeArguments="sd:DataRow" x:Key="iocurrentRow">[CurrentRow]</InOutArgument>
                           <InOutArgument x:TypeArguments="x:String" x:Key="ioBookingType">[currentMailMessage.Subject]</InOutArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                       </ui:InvokeWorkflowFile>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="20. c. Ui form Update - Invoke Workflow File (20. Validation\20. c. Ui form Update.xaml)" sap:VirtualizedContainerService.HintSize="360,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="20. Validation\20. c. Ui form Update.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="20. c. Ui form Update - Invoke Workflow File (20. Validation\20. c. Ui form Update.xaml)" sap:VirtualizedContainerService.HintSize="353.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_10" UnSafe="False" WorkflowFileName="20. Validation\20. c. Ui form Update.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="sd:DataRow" x:Key="iocurrentRow">[CurrentRow]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
@@ -624,9 +703,10 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InvokeWorkflowFile>
-                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="20. d. send mail to guest - Invoke Workflow File (20. Validation\20. d. send mail to guest.xaml)" sap:VirtualizedContainerService.HintSize="360,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="20. Validation\20. d. send mail to guest.xaml">
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="20. d. send mail to guest - Invoke Workflow File (20. Validation\20. d. send mail to guest.xaml)" sap:VirtualizedContainerService.HintSize="353.6,206.4" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_12" UnSafe="False" WorkflowFileName="20. Validation\20. d. send mail to guest.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
                           <InArgument x:TypeArguments="sd:DataRow" x:Key="iocurrentRow">[CurrentRow]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="istrMailSubject">[currentMailMessage.Subject]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -635,7 +715,7 @@
                           </scg:Dictionary>
                         </sap:WorkflowViewStateService.ViewState>
                       </ui:InvokeWorkflowFile>
-                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(&quot;Email&quot;),CurrentRow(&quot;Hotel Name&quot;),CurrentRow(&quot;Guest name&quot;),CurrentRow(&quot;Unique Ref Number&quot;),CurrentRow(&quot;Check-in Date&quot;),CurrentRow(&quot;Check out Date&quot;),CurrentRow(&quot;Room Type&quot;),CurrentRow(&quot;Booking Type&quot;),CurrentRow(&quot;status&quot;),Now}]" DataTable="[dtBookingDetails]" DisplayName="Add Data Row-Main Booking datatable" sap:VirtualizedContainerService.HintSize="360,211.2" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
+                      <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{CurrentRow(&quot;Email&quot;),CurrentRow(&quot;Hotel Name&quot;),CurrentRow(&quot;Guest name&quot;),CurrentRow(&quot;Unique Ref Number&quot;),CurrentRow(&quot;Check-in Date&quot;),CurrentRow(&quot;Check out Date&quot;),CurrentRow(&quot;Room Type&quot;),CurrentRow(&quot;Booking Type&quot;),CurrentRow(&quot;status&quot;),Now}]" DataTable="[dtBookingDetails]" DisplayName="Add Data Row-Main Booking datatable" sap:VirtualizedContainerService.HintSize="353.6,211.2" sap2010:WorkflowViewState.IdRef="AddDataRow_3">
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
                             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
