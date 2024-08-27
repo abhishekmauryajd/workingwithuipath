@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1112.8,6619.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1112.8,7067.2" sap2010:WorkflowViewState.IdRef="ActivityBuilder_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=System.Private.CoreLib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System.Net.Mail" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:umab="clr-namespace:UiPath.Mail.Activities.Business;assembly=UiPath.Mail.Activities" xmlns:umabh="clr-namespace:UiPath.Mail.Activities.Business.HtmlEditor;assembly=UiPath.Mail.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -144,7 +144,7 @@
       <AssemblyReference>Microsoft.VisualBasic.Core</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Hotel booking App&#xA;Fetching mail based on given subject. Reading all attchaments from the mail id and extract data from attachment.&#xA;Checking Business logic and categorize them into folder based on their status and send the mail to guest." DisplayName="Main-Hotel Booking" sap:VirtualizedContainerService.HintSize="909.6,6554.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Hotel booking App&#xA;Fetching mail based on given subject. Reading all attchaments from the mail id and extract data from attachment.&#xA;Checking Business logic and categorize them into folder based on their status and send the mail to guest." DisplayName="Main-Hotel Booking" sap:VirtualizedContainerService.HintSize="909.6,7002.4" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictInitialData" />
       <Variable x:TypeArguments="njl:JObject" Name="strjsonobj" />
@@ -422,7 +422,7 @@
       </ui:BuildDataTable>
       <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[dictInitialData(&quot;userOutlookMailID&quot;)]" DisplayName="Get Outlook Mail Messages-For Hotel Booking" Filter="[dictInitialData(&quot;mailFilter&quot;)]" GetAttachements="False" sap:VirtualizedContainerService.HintSize="452.8,48" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_2" MailFolder="[dictInitialData(&quot;mailFolderInbox&quot;)]" MarkAsRead="False" Messages="[lstmail]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="[Convert.ToInt32(dictInitialData(&quot;mailCount&quot;))]" />
     </Sequence>
-    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="847.2,4848" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Process" sap:VirtualizedContainerService.HintSize="847.2,5296" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictMatches" />
         <Variable x:TypeArguments="sd:DataTable" Name="dtDataUi" />
@@ -468,13 +468,13 @@
           </Sequence>
         </If.Else>
       </If>
-      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each currentMailMessage-list of mail message" sap:VirtualizedContainerService.HintSize="784.8,4670.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstmail]">
+      <ui:ForEach x:TypeArguments="snm:MailMessage" CurrentIndex="{x:Null}" DisplayName="For Each currentMailMessage-list of mail message" sap:VirtualizedContainerService.HintSize="784.8,5118.4" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[lstmail]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="snm:MailMessage">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="snm:MailMessage" Name="currentMailMessage" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Body-Current mail message" sap:VirtualizedContainerService.HintSize="751.2,4532.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <Sequence DisplayName="Body-Current mail message" sap:VirtualizedContainerService.HintSize="751.2,4980.8" sap2010:WorkflowViewState.IdRef="Sequence_6">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Boolean" Name="boolisMailFailed" />
                 <Variable x:TypeArguments="x:String" Name="mailStatus" />
@@ -522,6 +522,7 @@
                         <InArgument x:TypeArguments="x:String" x:Key="istrtext">[strmailBody]</InArgument>
                         <InArgument x:TypeArguments="njl:JObject" x:Key="ijobjFile">[strjsonobj]</InArgument>
                         <InOutArgument x:TypeArguments="sd:DataTable" x:Key="iodtCurrentData">[dtcurrentData]</InOutArgument>
+                        <InArgument x:TypeArguments="x:Boolean" x:Key="ioboolismailFailed">[boolisMailFailed]</InArgument>
                       </ui:InvokeWorkflowFile.Arguments>
                     </ui:InvokeWorkflowFile>
                   </Sequence>
@@ -537,7 +538,7 @@
                   </Sequence>
                 </If.Else>
               </If>
-              <If Condition="[currentMailMessage.Attachments.Any]" DisplayName="If-Mail contains attachment" sap:VirtualizedContainerService.HintSize="688.8,1222.4" sap2010:WorkflowViewState.IdRef="If_2">
+              <If Condition="[currentMailMessage.Attachments.Any]" DisplayName="If-Mail contains attachment" sap:VirtualizedContainerService.HintSize="688.8,1670.4" sap2010:WorkflowViewState.IdRef="If_2">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -545,7 +546,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <If.Then>
-                  <Sequence sap2010:Annotation.AnnotationText="Save attachemnts and checking file type and performing data extraction according to file" DisplayName="Then- Save Attachment" sap:VirtualizedContainerService.HintSize="655.2,766.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <Sequence sap2010:Annotation.AnnotationText="Save attachemnts and checking file type and performing data extraction according to file" DisplayName="Then- Save Attachment" sap:VirtualizedContainerService.HintSize="655.2,1214.4" sap2010:WorkflowViewState.IdRef="Sequence_8">
                     <Sequence.Variables>
                       <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="ienumAttach" />
                     </Sequence.Variables>
@@ -564,13 +565,13 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                     </ui:SaveMailAttachments>
-                    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each -Attachment in current mail" sap:VirtualizedContainerService.HintSize="592.8,526.4" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[ienumAttach]">
+                    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each -Attachment in current mail" sap:VirtualizedContainerService.HintSize="592.8,974.4" sap2010:WorkflowViewState.IdRef="ForEach`1_5" Values="[ienumAttach]">
                       <ui:ForEach.Body>
                         <ActivityAction x:TypeArguments="x:String">
                           <ActivityAction.Argument>
                             <DelegateInArgument x:TypeArguments="x:String" Name="currentText" />
                           </ActivityAction.Argument>
-                          <Sequence DisplayName="Body-Attachment (For each attachments)" sap:VirtualizedContainerService.HintSize="559.2,388.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <Sequence DisplayName="Body-Attachment (For each attachments)" sap:VirtualizedContainerService.HintSize="559.2,836.8" sap2010:WorkflowViewState.IdRef="Sequence_9">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:String" Name="strOuputData" />
                               <Variable x:TypeArguments="sd:DataTable" Name="dt" />
@@ -583,7 +584,7 @@
                                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[currentText.Substring(currentText.LastIndexOf(&quot;.&quot;c))]" sap:VirtualizedContainerService.HintSize="496.8,196" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                            <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[currentText.Substring(currentText.LastIndexOf(&quot;.&quot;c))]" sap:VirtualizedContainerService.HintSize="496.8,644" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                               <Switch.Default>
                                 <ui:LogMessage DisplayName="Log Message-Console" sap:VirtualizedContainerService.HintSize="200,24.8" sap2010:WorkflowViewState.IdRef="LogMessage_11" Level="Trace" Message="[&quot;Invalid format&quot;]">
                                   <sap:WorkflowViewStateService.ViewState>
@@ -613,6 +614,7 @@
                                     <InArgument x:TypeArguments="x:String" x:Key="istrtext">[strOuputData]</InArgument>
                                     <InArgument x:TypeArguments="njl:JObject" x:Key="ijobjFile">[strjsonobj]</InArgument>
                                     <InOutArgument x:TypeArguments="sd:DataTable" x:Key="iodtCurrentData">[dtcurrentData]</InOutArgument>
+                                    <InArgument x:TypeArguments="x:Boolean" x:Key="ioboolismailFailed">[boolisMailFailed]</InArgument>
                                   </ui:InvokeWorkflowFile.Arguments>
                                 </ui:InvokeWorkflowFile>
                               </Sequence>

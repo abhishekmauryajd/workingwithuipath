@@ -3,6 +3,7 @@
     <x:Property Name="istrtext" Type="InArgument(x:String)" />
     <x:Property Name="ijobjFile" Type="InArgument(njl:JObject)" />
     <x:Property Name="iodtCurrentData" Type="InOutArgument(sd:DataTable)" />
+    <x:Property Name="ioboolismailFailed" Type="InArgument(x:Boolean)" />
   </x:Members>
   <this:_10__a__ExtractDataInvoke.istrtext>
     <InArgument x:TypeArguments="x:String" />
@@ -13,7 +14,7 @@
   <VisualBasic.Settings>
     <x:Null />
   </VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1112.8,1141.6</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1112.8,1508</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>_10__a__ExtractDataInvoke_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -120,7 +121,7 @@
       <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Return maching data from text using regex pattern&#xA;and storing all matching data in datatable" DisplayName="_10__a__ExtractDataInvoke" sap:VirtualizedContainerService.HintSize="512,1076.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Return maching data from text using regex pattern&#xA;and storing all matching data in datatable" DisplayName="_10__a__ExtractDataInvoke" sap:VirtualizedContainerService.HintSize="628.8,1349.6" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dictMatches" />
     </Sequence.Variables>
@@ -130,43 +131,71 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:InvokeCode ContinueOnError="{x:Null}" Code="odictMatches =New Dictionary(Of String,String)&#xA;Dim regex As system.text.RegularExpressions.Regex&#xA;Dim match As System.Text.RegularExpressions.Match&#xA;For Each jpropVarName As Newtonsoft.Json.Linq.JProperty In ijobjRegex.Item(istrBookingSource)&#xA;&#x9;'Console.WriteLine(jpropVarName.Name)&#xA;&#x9;Dim jtokVarName As Newtonsoft.Json.Linq.JToken = jpropVarName.Value&#xA;&#x9;For Each jpropRegexListName As Newtonsoft.Json.Linq.JProperty In jtokVarName&#xA;&#x9;&#x9;'console.WriteLine(jpropRegexListName.Name)&#xA;&#x9;&#x9;Dim RegexPatterns As Newtonsoft.Json.Linq.JToken = jpropRegexListName.Value&#xA;&#x9;&#x9;For Each Regexx As Newtonsoft.Json.Linq.JValue In RegexPatterns&#xA;&#x9;&#x9;&#x9;'console.WriteLine(regexx)&#xA;&#x9;&#x9;&#x9;regex=New System.Text.RegularExpressions.Regex(Regexx.ToString)&#xA;&#x9;&#x9;&#x9;match=regex.Match(istrText)&#xA;&#x9;&#x9;&#x9;If match.Success&#xA;&#x9;&#x9;&#x9;&#x9;'console.WriteLine(match.Value)&#xA;&#x9;&#x9;&#x9;&#x9;odictMatches(jpropVarName.Name)=match.Groups(&quot;group&quot;).Value.Trim&#xA;&#x9;&#x9;&#x9;&#x9;Exit For&#xA;&#x9;&#x9;&#x9;Else&#xA;&#x9;&#x9;&#x9;&#x9;odictMatches(jpropVarName.Name)=&quot;Not found&quot;&#xA;&#x9;&#x9;&#x9;End If&#xA;&#x9;&#x9;Next&#xA;&#x9;Next&#xA;Next" DisplayName="Invoke Code-Extract Matches pattern from Data" sap:VirtualizedContainerService.HintSize="449.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
-      <ui:InvokeCode.Arguments>
-        <InArgument x:TypeArguments="njl:JObject" x:Key="ijobjregex">[ijobjFile]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="istrBookingSource">PDF</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="istrText">[istrtext]</InArgument>
-        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="odictMatches">[dictMatches]</OutArgument>
-      </ui:InvokeCode.Arguments>
-    </ui:InvokeCode>
-    <If Condition="[not (dictMatches(&quot;strEmailID&quot;).Contains(&quot;Not found&quot;) AndAlso dictMatches(&quot;strHotelName&quot;).Contains(&quot;Not found&quot;) AndAlso dictMatches(&quot;strGuestName&quot;).Contains(&quot;Not found&quot;) AndAlso dictMatches(&quot;strUniqueRefNumber&quot;).Contains(&quot;Not found&quot;) AndAlso  dictMatches(&quot;strCheckinDate&quot;).Contains(&quot;Not found&quot;))]" DisplayName="If-Check pdf/body contains required data or not" sap:VirtualizedContainerService.HintSize="449.6,747.2" sap2010:WorkflowViewState.IdRef="If_1">
-      <If.Then>
-        <Sequence sap2010:Annotation.AnnotationText="add data in to current datatable" DisplayName="Then-Required data fetches" sap:VirtualizedContainerService.HintSize="416,331.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="566.4,1216.8" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+      <TryCatch.Try>
+        <If Condition="[istrtext.Contains(&quot;Unique Ref NUMBER&quot;)]" sap:VirtualizedContainerService.HintSize="529.6,962.4" sap2010:WorkflowViewState.IdRef="If_2">
+          <If.Then>
+            <Sequence DisplayName="Then-mail contains Unique Ref NUMBER" sap:VirtualizedContainerService.HintSize="416,333.6" sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:InvokeCode ContinueOnError="{x:Null}" Code="odictMatches =New Dictionary(Of String,String)&#xA;Dim regex As system.text.RegularExpressions.Regex&#xA;Dim match As System.Text.RegularExpressions.Match&#xA;For Each jpropVarName As Newtonsoft.Json.Linq.JProperty In ijobjRegex.Item(istrBookingSource)&#xA;&#x9;'Console.WriteLine(jpropVarName.Name)&#xA;&#x9;Dim jtokVarName As Newtonsoft.Json.Linq.JToken = jpropVarName.Value&#xA;&#x9;For Each jpropRegexListName As Newtonsoft.Json.Linq.JProperty In jtokVarName&#xA;&#x9;&#x9;'console.WriteLine(jpropRegexListName.Name)&#xA;&#x9;&#x9;Dim RegexPatterns As Newtonsoft.Json.Linq.JToken = jpropRegexListName.Value&#xA;&#x9;&#x9;For Each Regexx As Newtonsoft.Json.Linq.JValue In RegexPatterns&#xA;&#x9;&#x9;&#x9;'console.WriteLine(regexx)&#xA;&#x9;&#x9;&#x9;regex=New System.Text.RegularExpressions.Regex(Regexx.ToString)&#xA;&#x9;&#x9;&#x9;match=regex.Match(istrText)&#xA;&#x9;&#x9;&#x9;If match.Success&#xA;&#x9;&#x9;&#x9;&#x9;'console.WriteLine(match.Value)&#xA;&#x9;&#x9;&#x9;&#x9;odictMatches(jpropVarName.Name)=match.Groups(&quot;group&quot;).Value.Trim&#xA;&#x9;&#x9;&#x9;&#x9;Exit For&#xA;&#x9;&#x9;&#x9;Else&#xA;&#x9;&#x9;&#x9;&#x9;odictMatches(jpropVarName.Name)=&quot;Not found&quot;&#xA;&#x9;&#x9;&#x9;End If&#xA;&#x9;&#x9;Next&#xA;&#x9;Next&#xA;Next" DisplayName="Invoke Code-Extract Matches pattern from Data" sap:VirtualizedContainerService.HintSize="353.6,196.8" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                <ui:InvokeCode.Arguments>
+                  <InArgument x:TypeArguments="njl:JObject" x:Key="ijobjregex">[ijobjFile]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="istrBookingSource">PDF</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="istrText">[istrtext]</InArgument>
+                  <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="odictMatches">[dictMatches]</OutArgument>
+                </ui:InvokeCode.Arguments>
+              </ui:InvokeCode>
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{dictMatches(&quot;strEmailID&quot;),dictMatches(&quot;strHotelName&quot;),dictMatches(&quot;strGuestName&quot;), dictMatches(&quot;strUniqueRefNumber&quot;), dictMatches(&quot;strCheckinDate&quot;), dictMatches(&quot;strCheckoutDate&quot;),dictMatches(&quot;strNumberOfAdult&quot;), dictMatches(&quot;strRoomType&quot;)}]" DataTable="[iodtCurrentData]" DisplayName="Add Data Row-For current mail " sap:VirtualizedContainerService.HintSize="353.6,48" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:AddDataRow>
+            </Sequence>
+          </If.Then>
+          <If.Else>
+            <Sequence DisplayName="Else-mail doesn't conatins Unique Ref NUMBER" sap:VirtualizedContainerService.HintSize="496,490.4" sap2010:WorkflowViewState.IdRef="Sequence_5">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:LogMessage DisplayName="Log Message-Data Not found" sap:VirtualizedContainerService.HintSize="433.6,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Warn" Message="[&quot;Data not found&quot;]" />
+              <Assign sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Boolean">[ioboolismailFailed]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Throw DisplayName="Throw-BRE Data not found" Exception="[new BusinessRuleException(&quot;Data not found&quot;)]" sap:VirtualizedContainerService.HintSize="433.6,113.6" sap2010:WorkflowViewState.IdRef="Throw_1" />
+            </Sequence>
+          </If.Else>
+        </If>
+      </TryCatch.Try>
+      <TryCatch.Catches>
+        <Catch x:TypeArguments="ui:BusinessRuleException" sap:VirtualizedContainerService.HintSize="532.8,23.2" sap2010:WorkflowViewState.IdRef="Catch`1_1">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-              <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{dictMatches(&quot;strEmailID&quot;),dictMatches(&quot;strHotelName&quot;),dictMatches(&quot;strGuestName&quot;), dictMatches(&quot;strUniqueRefNumber&quot;), dictMatches(&quot;strCheckinDate&quot;), dictMatches(&quot;strCheckoutDate&quot;),dictMatches(&quot;strNumberOfAdult&quot;), dictMatches(&quot;strRoomType&quot;)}]" DataTable="[iodtCurrentData]" DisplayName="Add Data Row-For current mail " sap:VirtualizedContainerService.HintSize="353.6,211.2" sap2010:WorkflowViewState.IdRef="AddDataRow_1">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">False</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-          </ui:AddDataRow>
-        </Sequence>
-      </If.Then>
-      <If.Else>
-        <Sequence DisplayName="Else-data not found" sap:VirtualizedContainerService.HintSize="416,254.4" sap2010:WorkflowViewState.IdRef="Sequence_3">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="353.6,165.6" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Trace" Message="[&quot;pdf/body doesn't contains required information...&quot;]" />
-        </Sequence>
-      </If.Else>
-    </If>
+          <ActivityAction x:TypeArguments="ui:BusinessRuleException">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:BusinessRuleException" Name="exception" />
+            </ActivityAction.Argument>
+            <ui:LogMessage DisplayName="Log Message-BRE" sap:VirtualizedContainerService.HintSize="334.4,142.4" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Error" Message="[exception.Message]" />
+          </ActivityAction>
+        </Catch>
+      </TryCatch.Catches>
+    </TryCatch>
   </Sequence>
 </Activity>
